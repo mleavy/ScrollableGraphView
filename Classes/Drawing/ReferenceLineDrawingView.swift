@@ -51,6 +51,9 @@ internal class ReferenceLineDrawingView : UIView {
         
         self.settings = referenceLineSettings
         
+        leftLabelInset = self.settings.leftLabelInset
+        rightLabelInset = self.settings.rightLabelInset
+        
         self.layer.addSublayer(referenceLineLayer)
     }
     

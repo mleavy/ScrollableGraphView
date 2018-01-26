@@ -13,6 +13,7 @@ import UIKit
     
     /// The background colour for the entire graph view, not just the plotted graph.
     @IBInspectable open var backgroundFillColor: UIColor = UIColor.white
+    @IBInspectable open var xLabelsBackgroundFillColor: UIColor = UIColor.clear
     
     // Spacing
     // #######
@@ -175,7 +176,13 @@ import UIKit
         self.addSubview(drawingView)
         
         // Add the x-axis labels view.
-        self.insertSubview(labelsView, aboveSubview: drawingView)
+        let offset = topMargin+bottomMargin
+        let labelsFrame = CGRect(x: viewport.origin.x, y: viewport.size.height - offset, width: viewport.size.width, height: offset)
+        let labelBackground = UIView(frame: labelsFrame)
+        labelBackground.backgroundColor = xLabelsBackgroundFillColor
+        self.insertSubview(labelBackground, aboveSubview: drawingView)
+        self.insertSubview(labelsView, aboveSubview: labelBackground)
+        
         
         // 2.
         // Calculate the total size of the graph, need to know this for the scrollview.

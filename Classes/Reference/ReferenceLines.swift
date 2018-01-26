@@ -29,6 +29,8 @@ open class ReferenceLines {
     @IBInspectable open var relativePositions: [Double] = [0.25, 0.5, 0.75]
     @IBInspectable open var absolutePositions: [Double] = [25, 50, 75]
     @IBInspectable open var includeMinMax: Bool = true
+    @IBInspectable open var leftLabelInset: CGFloat = 10
+    @IBInspectable open var rightLabelInset: CGFloat = 10
     
     /// Whether or not to add labels to the intermediate reference lines.
     @IBInspectable open var shouldAddLabelsToIntermediateReferenceLines: Bool = true

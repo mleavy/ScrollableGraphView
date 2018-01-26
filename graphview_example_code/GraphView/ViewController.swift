@@ -44,6 +44,8 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         addReloadLabel(withText: "RELOAD")
         addLabel(withText: "MULTI 1 (TAP HERE)")
         
+        self.view.backgroundColor = .black
+        
         self.view.insertSubview(graphView, belowSubview: reloadLabel)
         
         setupConstraints()
@@ -411,6 +413,11 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         
         // Setup the graph
         graphView.backgroundFillColor = UIColor.colorFromHex(hexString: "#222222")
+        graphView.xLabelsBackgroundFillColor = graphView.backgroundFillColor
+        //graphView.bottomMargin = graphView.bottomMargin + 30
+        graphView.topMargin = graphView.topMargin + graphView.bottomMargin
+        referenceLines.leftLabelInset = 0
+        graphView.shouldRangeAlwaysStartAtZero = true
         
         graphView.dataPointSpacing = 60
         graphView.shouldAdaptRange = true
@@ -432,7 +439,7 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         let topConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
         let rightConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0)
         let bottomConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-        let leftConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 20)
         
         //let heightConstraint = NSLayoutConstraint(item: self.graphView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         
