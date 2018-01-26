@@ -39,7 +39,8 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        graphView = createMultiPlotGraphOne(self.view.frame)
+        //graphView = createMultiPlotGraphOne(self.view.frame)
+        graphView = createPinkGraph(self.view.frame)
         
         addReloadLabel(withText: "RELOAD")
         addLabel(withText: "MULTI 1 (TAP HERE)")
@@ -394,8 +395,9 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         // Setup the plot
         let linePlot = LinePlot(identifier: "pinkLine")
         
-        linePlot.lineColor = UIColor.clear
+        linePlot.lineColor = UIColor.blue
         linePlot.shouldFill = true
+        linePlot.shouldFillFromZero = false
         linePlot.fillColor = UIColor.colorFromHex(hexString: "#FF0080")
         
         // Setup the reference lines
@@ -524,7 +526,7 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         graphView.removeFromSuperview()
         
         switch(currentGraphType) {
-            
+
         case .simple: // Show simple graph, no adapting, single line.
             graphView = createSimpleGraph(self.view.frame)
             addReloadLabel(withText: "RELOAD")
