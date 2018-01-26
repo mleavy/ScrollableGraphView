@@ -12,12 +12,8 @@ extension UIColor {
         func clean(hexString: String) -> String {
             
             var cleanedHexString = String()
-            
-            // Remove the leading "#"
-            if(hexString[hexString.startIndex] == "#") {
-                cleanedHexString = hexString.substring(from: hexString.characters.index(hexString.startIndex, offsetBy: 1))
-            }
-            
+            cleanedHexString = hexString.replacingOccurrences(of: "#", with: "")
+                        
             // TODO: Other cleanup. Allow for a "short" hex string, i.e., "#fff"
             
             return cleanedHexString
