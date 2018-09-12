@@ -16,7 +16,7 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
     
     // Data for the different plots
     
-    var numberOfDataItems = 29
+    var numberOfDataItems = 1//29
     
     // Data for graphs with a single plot
     lazy var simpleLinePlotData: [Double] = self.generateRandomData(self.numberOfDataItems, max: 100, shouldIncludeOutliers: false)
@@ -407,11 +407,12 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         referenceLines.referenceLineLabelFont = UIFont.boldSystemFont(ofSize: 10)
         referenceLines.referenceLineColor = UIColor.white.withAlphaComponent(0.5)
         referenceLines.referenceLineLabelColor = UIColor.white
-        referenceLines.referenceLinePosition = ScrollableGraphViewReferenceLinePosition.both
+        referenceLines.referenceLinePosition = ScrollableGraphViewReferenceLinePosition.left
         
         referenceLines.dataPointLabelFont = UIFont.boldSystemFont(ofSize: 10)
         referenceLines.dataPointLabelColor = UIColor.white
-        referenceLines.dataPointLabelsSparsity = 3
+        referenceLines.shouldShowLabels = true
+        referenceLines.leftLabelInset = 0
         
         // Setup the graph
         graphView.backgroundFillColor = UIColor.colorFromHex(hexString: "#222222")
@@ -420,9 +421,15 @@ class ViewController: UIViewController, ScrollableGraphViewDataSource {
         graphView.topMargin = graphView.topMargin + graphView.bottomMargin
         referenceLines.leftLabelInset = 0
         graphView.shouldRangeAlwaysStartAtZero = true
+        graphView.isScrollEnabled = false
+        graphView.leftmostPointPadding = 20
+        graphView.rightmostPointPadding = 10
         
-        graphView.dataPointSpacing = 60
-        graphView.shouldAdaptRange = true
+        graphView.rangeMin = 0
+        graphView.rangeMax = value(forPlot: linePlot, atIndex: 0)
+        
+        graphView.dataPointSpacing = graphView.frame.size.width / CGFloat(numberOfPoints())
+        graphView.shouldAdaptRange = false
         
         // Add everything
         graphView.addPlot(plot: linePlot)
