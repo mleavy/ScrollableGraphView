@@ -10,6 +10,6 @@ let package = Package(
         .library(name: "ScrollableGraphView", targets: ["ScrollableGraphView"])
     ],
     targets: [
-        .target(name: "ScrollableGraphView", path: "Sources")
+        .target(name: "ScrollableGraphView", path: "Classes")
     ]
 )
